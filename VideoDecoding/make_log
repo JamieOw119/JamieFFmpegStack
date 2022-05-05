@@ -1,0 +1,309 @@
+g++ -g -o VideoDecoding decoder.o main.o -L ~/ffmpeg-stack/lib -lavformat -lavdevice -lavcodec -lavutil -lpthread -lswscale -lswresample -lz -lm -lbz2 -llzma -ldl -lrt                                                         
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libdav1d.o): in function `libdav1d_flush':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:278: undefined reference to `dav1d_data_unref'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libdav1d.o): in function `libdav1d_receive_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:347: undefined reference to `dav1d_send_data'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:352: undefined reference to `dav1d_data_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:357: undefined reference to `dav1d_get_picture'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:535: undefined reference to `dav1d_picture_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:311: undefined reference to `dav1d_data_wrap'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:333: undefined reference to `dav1d_data_wrap_user_data'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:337: undefined reference to `dav1d_data_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:535: undefined reference to `dav1d_picture_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:535: undefined reference to `dav1d_picture_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:535: undefined reference to `dav1d_picture_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:535: undefined reference to `dav1d_picture_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:372: undefined reference to `dav1d_picture_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:329: undefined reference to `dav1d_data_unref'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libdav1d.o): in function `libdav1d_flush':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:279: undefined reference to `dav1d_flush'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libdav1d.o): in function `libdav1d_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:546: undefined reference to `dav1d_data_unref'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:547: undefined reference to `dav1d_close'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libdav1d.o): in function `libdav1d_parse_extradata':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:197: undefined reference to `dav1d_parse_sequence_header'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libdav1d.o): in function `libdav1d_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:223: undefined reference to `dav1d_version'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:225: undefined reference to `dav1d_default_settings'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libdav1d.c:267: undefined reference to `dav1d_open'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacdec.o): in function `fdk_aac_decode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:409: undefined reference to `aacDecoder_DecodeFrame'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacdec.o): in function `get_stream_info':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:116: undefined reference to `aacDecoder_GetStreamInfo'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacdec.o): in function `fdk_aac_decode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:391: undefined reference to `aacDecoder_Fill'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacdec.o): in function `fdk_aac_decode_flush':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:474: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacdec.o): in function `fdk_aac_decode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:235: undefined reference to `aacDecoder_Close'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacdec.o): in function `fdk_aac_decode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:247: undefined reference to `aacDecoder_Open'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:254: undefined reference to `aacDecoder_ConfigRaw'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:261: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:293: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:302: undefined reference to `aacDecoder_AncDataInit'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:311: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:318: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:331: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:338: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacdec.c:346: undefined reference to `aacDecoder_SetParam'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacenc.o): in function `aac_encode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:115: undefined reference to `aacEncClose'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacenc.o): in function `aac_encode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:408: undefined reference to `aacEncEncode'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacenc.o): in function `aac_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:131: undefined reference to `aacEncOpen'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:140: undefined reference to `aacEncoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:147: undefined reference to `aacEncoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:155: undefined reference to `aacEncoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:210: undefined reference to `aacEncoder_SetParam'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:217: undefined reference to `aacEncoder_SetParam'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacenc.o):/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:235: more undefined references to `aacEncoder_SetParam' follow
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libfdk-aacenc.o): in function `aac_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:315: undefined reference to `aacEncEncode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libfdk-aacenc.c:321: undefined reference to `aacEncInfo'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libmp3lame.o): in function `mp3lame_encode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:202: undefined reference to `lame_encode_buffer'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:205: undefined reference to `lame_encode_buffer_int'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:218: undefined reference to `lame_encode_buffer_float'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:226: undefined reference to `lame_encode_flush'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libmp3lame.o): in function `mp3lame_encode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:88: undefined reference to `lame_close'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libmp3lame.o): in function `mp3lame_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:100: undefined reference to `lame_init'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:104: undefined reference to `lame_set_num_channels'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:105: undefined reference to `lame_set_mode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:109: undefined reference to `lame_set_in_samplerate'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:110: undefined reference to `lame_set_out_samplerate'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:114: undefined reference to `lame_set_quality'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:118: undefined reference to `lame_set_VBR'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:119: undefined reference to `lame_set_VBR_quality'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:123: undefined reference to `lame_set_VBR'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:124: undefined reference to `lame_set_VBR_mean_bitrate_kbps'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:126: undefined reference to `lame_set_brate'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:132: undefined reference to `lame_set_lowpassfreq'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:135: undefined reference to `lame_set_bWriteVbrTag'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:138: undefined reference to `lame_set_disable_reservoir'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:141: undefined reference to `lame_init_params'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:147: undefined reference to `lame_get_encoder_delay'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libmp3lame.c:150: undefined reference to `lame_get_framesize'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusdec.o): in function `libopus_flush':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:209: undefined reference to `opus_multistream_decoder_ctl'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusdec.o): in function `libopus_decode':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:174: undefined reference to `opus_multistream_decode_float'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:170: undefined reference to `opus_multistream_decode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:179: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusdec.o): in function `libopus_decode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:151: undefined reference to `opus_multistream_decoder_destroy'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusdec.o): in function `libopus_decode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:107: undefined reference to `opus_multistream_decoder_create'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:111: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:117: undefined reference to `opus_multistream_decoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:119: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:132: undefined reference to `opus_multistream_decoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusdec.c:135: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusenc.o): in function `libopus_encode':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:498: undefined reference to `opus_multistream_encode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:494: undefined reference to `opus_multistream_encode_float'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:503: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusenc.o): in function `libopus_encode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:539: undefined reference to `opus_multistream_encoder_destroy'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusenc.o): in function `libopus_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:359: undefined reference to `opus_multistream_encoder_create'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:369: undefined reference to `opus_multistream_surround_encoder_create'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:376: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusenc.o): in function `libopus_configure_encoder':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:124: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:126: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:131: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:134: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:137: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:139: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:142: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:145: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:148: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:151: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:155: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:158: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:163: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:166: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:171: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:174: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libopusenc.o): in function `libopus_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:421: undefined reference to `opus_multistream_encoder_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:423: undefined reference to `opus_strerror'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libopusenc.c:437: undefined reference to `opus_multistream_encoder_destroy'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisenc.o): in function `libvorbis_encode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:301: undefined reference to `vorbis_analysis_buffer'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:308: undefined reference to `vorbis_analysis_wrote'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:324: undefined reference to `vorbis_analysis_blockout'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:325: undefined reference to `vorbis_analysis'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:327: undefined reference to `vorbis_bitrate_addblock'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:331: undefined reference to `vorbis_bitrate_flushpacket'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:316: undefined reference to `vorbis_analysis_wrote'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisenc.o): in function `libvorbis_encode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:195: undefined reference to `vorbis_analysis_wrote'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:197: undefined reference to `vorbis_block_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:198: undefined reference to `vorbis_dsp_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:199: undefined reference to `vorbis_info_clear'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisenc.o): in function `libvorbis_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:217: undefined reference to `vorbis_info_init'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisenc.o): in function `libvorbis_setup':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:114: undefined reference to `vorbis_encode_setup_vbr'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:123: undefined reference to `vorbis_encode_setup_managed'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:130: undefined reference to `vorbis_encode_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:137: undefined reference to `vorbis_encode_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:143: undefined reference to `vorbis_encode_ctl'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:175: undefined reference to `vorbis_encode_setup_init'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisenc.o): in function `libvorbis_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:222: undefined reference to `vorbis_analysis_init'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:228: undefined reference to `vorbis_block_init'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:234: undefined reference to `vorbis_comment_init'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:236: undefined reference to `vorbis_comment_add_tag'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:238: undefined reference to `vorbis_analysis_headerout'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisenc.c:271: undefined reference to `vorbis_comment_clear'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `decode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:204: undefined reference to `vpx_codec_decode'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `vpx_decode':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:264: undefined reference to `vpx_codec_get_frame'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `decode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:204: undefined reference to `vpx_codec_decode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:205: undefined reference to `vpx_codec_error'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:206: undefined reference to `vpx_codec_error_detail'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `vpx_decode':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:266: undefined reference to `vpx_codec_get_frame'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `decode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:205: undefined reference to `vpx_codec_error'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `vpx_decode':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:247: undefined reference to `vpx_codec_vp9_dx'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:247: undefined reference to `vpx_codec_vp8_dx'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `vpx_free':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:344: undefined reference to `vpx_codec_destroy'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:346: undefined reference to `vpx_codec_destroy'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `vpx_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:95: undefined reference to `vpx_codec_version_str'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:96: undefined reference to `vpx_codec_build_config'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:98: undefined reference to `vpx_codec_dec_init_ver'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:99: undefined reference to `vpx_codec_error'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:106: undefined reference to `vpx_codec_set_frame_buffer_functions'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `vp8_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:355: undefined reference to `vpx_codec_vp8_dx'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxdec.o): in function `vp9_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxdec.c:377: undefined reference to `vpx_codec_vp9_dx'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `storeframe':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1269: undefined reference to `vpx_codec_control_'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `vp9_encode_set_roi':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1524: undefined reference to `vpx_codec_version'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1552: undefined reference to `vpx_codec_control_'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `vpx_encode':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1635: undefined reference to `vpx_codec_enc_config_set'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1774: undefined reference to `vpx_codec_encode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1782: undefined reference to `vpx_codec_encode'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `queue_frames':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1332: undefined reference to `vpx_codec_get_cx_data'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1334: undefined reference to `vpx_codec_get_cx_data'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `realloc_alpha_uv':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1605: undefined reference to `vpx_img_wrap'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `vp8_encode_set_roi':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1582: undefined reference to `vpx_codec_control_'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `log_encoder_error':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:194: undefined reference to `vpx_codec_error'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:195: undefined reference to `vpx_codec_error_detail'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `codecctl_intp':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:402: undefined reference to `vpx_codec_control_'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:411: undefined reference to `vpx_codec_control_'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `codecctl_int':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:369: undefined reference to `vpx_codec_control_'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:378: undefined reference to `vpx_codec_control_'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `vpx_free':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:439: undefined reference to `vpx_codec_destroy'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:441: undefined reference to `vpx_codec_destroy'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `vpx_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:896: undefined reference to `vpx_codec_get_caps'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:901: undefined reference to `vpx_codec_version_str'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:902: undefined reference to `vpx_codec_build_config'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:907: undefined reference to `vpx_codec_enc_config_default'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:908: undefined reference to `vpx_codec_err_to_string'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1079: undefined reference to `vpx_codec_enc_init_ver'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1104: undefined reference to `vpx_codec_enc_init_ver'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1183: undefined reference to `vpx_img_wrap'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `vp8_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1932: undefined reference to `vpx_codec_vp8_cx'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpxenc.o): in function `vp9_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpxenc.c:1964: undefined reference to `vpx_codec_vp9_cx'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o): in function `X264_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:330: undefined reference to `x264_picture_init'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o): in function `reconfig_encoder':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:300: undefined reference to `x264_encoder_reconfig'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o): in function `X264_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:499: undefined reference to `x264_encoder_encode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:499: undefined reference to `x264_encoder_encode'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:505: undefined reference to `x264_encoder_delayed_frames'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o): in function `reconfig_encoder':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:215: undefined reference to `x264_encoder_reconfig'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:227: undefined reference to `x264_encoder_reconfig'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:253: undefined reference to `x264_encoder_reconfig'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:220: undefined reference to `x264_encoder_reconfig'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:233: undefined reference to `x264_encoder_reconfig'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o):/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:240: more undefined references to `x264_encoder_reconfig' follow
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o): in function `X264_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:563: undefined reference to `x264_encoder_close'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o): in function `parse_opts':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:575: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx264.o): in function `X264_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:653: undefined reference to `x264_param_default'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:658: undefined reference to `x264_param_default_preset'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:683: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:717: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:749: undefined reference to `x264_levels'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:774: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:775: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:776: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:777: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:837: undefined reference to `x264_param_apply_fastfirstpass'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:877: undefined reference to `x264_param_apply_profile'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:960: undefined reference to `x264_param_parse'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:980: undefined reference to `x264_encoder_open_155'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:989: undefined reference to `x264_encoder_headers'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx264.c:1020: undefined reference to `x264_encoder_maximum_delayed_frames'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx265.o): in function `libx265_encode_init_csp':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx265.c:698: undefined reference to `x265_api_get_179'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx265.c:700: undefined reference to `x265_api_get_179'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx265.c:702: undefined reference to `x265_api_get_179'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libx265.o): in function `libx265_encode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libx265.c:132: undefined reference to `x265_api_get_179'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libx265.c:134: undefined reference to `x265_api_get_179'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvpx.o): in function `ff_vp9_init_static':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvpx.c:74: undefined reference to `vpx_codec_vp9_cx'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvpx.c:74: undefined reference to `vpx_codec_get_caps'
+/usr/bin/ld: decoder.o: in function `Open_decoder(CodecCtx&)':
+/root/ffmpeg-stack/VideoDecoding/decoder.cpp:5: undefined reference to `avcodec_register_all'
+/usr/bin/ld: main.o: in function `main':
+/root/ffmpeg-stack/VideoDecoding/main.cpp:28: undefined reference to `Parse_input_param(int, char**, IOParam&)'
+/usr/bin/ld: /root/ffmpeg-stack/VideoDecoding/main.cpp:30: undefined reference to `Open_file(IOParam&)'
+/usr/bin/ld: /root/ffmpeg-stack/VideoDecoding/main.cpp:64: undefined reference to `avcodec_decode_video2'
+/usr/bin/ld: /root/ffmpeg-stack/VideoDecoding/main.cpp:73: undefined reference to `write_out_yuv_frame(CodecCtx const&, IOParam&)'
+/usr/bin/ld: /root/ffmpeg-stack/VideoDecoding/main.cpp:79: undefined reference to `Close_file(IOParam&)'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisdec.o): in function `oggvorbis_decode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:204: undefined reference to `vorbis_block_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:205: undefined reference to `vorbis_dsp_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:206: undefined reference to `vorbis_info_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:207: undefined reference to `vorbis_comment_clear'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisdec.o): in function `oggvorbis_decode_frame':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:182: undefined reference to `vorbis_synthesis'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:188: undefined reference to `vorbis_synthesis_pcmout'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:192: undefined reference to `vorbis_synthesis_read'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:183: undefined reference to `vorbis_synthesis_blockin'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisdec.o): in function `oggvorbis_decode_init':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:49: undefined reference to `vorbis_info_init'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:50: undefined reference to `vorbis_comment_init'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:109: undefined reference to `vorbis_synthesis_headerin'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:123: undefined reference to `vorbis_synthesis_init'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:124: undefined reference to `vorbis_block_init'
+/usr/bin/ld: /root/ffmpeg-stack/lib/libavcodec.a(libvorbisdec.o): in function `oggvorbis_decode_close':
+/root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:204: undefined reference to `vorbis_block_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:205: undefined reference to `vorbis_dsp_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:206: undefined reference to `vorbis_info_clear'
+/usr/bin/ld: /root/ffmpeg_sources/ffmpeg/libavcodec/libvorbisdec.c:207: undefined reference to `vorbis_comment_clear'
+collect2: error: ld returned 1 exit status
+make: *** [Makefile:19: VideoDecoding] Error 1
