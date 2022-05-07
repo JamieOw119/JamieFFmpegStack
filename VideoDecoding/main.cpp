@@ -48,31 +48,32 @@ int main(int argc, char **argv)
         while(uDataSize > 0)
         {
             len = av_parser_parse2(ctx.pCodecParserCtx, ctx.pCodecContext, 
-										&(ctx.pkt.data), &(ctx.pkt.size), 
+										&(ctx.pkt->data), &(ctx.pkt->size), 
 										pDataPtr, uDataSize, 
 										AV_NOPTS_VALUE, AV_NOPTS_VALUE, AV_NOPTS_VALUE);
             pDataPtr += len;
             uDataSize -= len;
 
-            if (0 == ctx.pkt.size)
+            if (0 == ctx.pkt->size)
 			{
 				continue;
 			}
 
-            printf("Parse 1 packet. Packet pts: %d.\n", ctx.pkt.pts);
-
-			int ret = avcodec_decode_video2(ctx.pCodecContext, ctx.frame, &got_picture, &(ctx.pkt));
-			if (ret < 0) 
+            printf("Parse 1 packet. Packet pts: %ld.\n", ctx.pkt->pts);
+            
+            int ret = avcodec_send_frame(ctx.pCodecContext, ctx.frame);
+            if (ret < 0) 
 			{
 				printf("Decode Error.\n");
 				return ret;
 			}
-
-            if (got_picture) 
-			{
-				write_out_yuv_frame(ctx, inputoutput);
-				printf("Succeed to decode 1 frame! Frame pts: %d\n", ctx.frame->pts);
-			}
+            
+            ret = avcodec_receive_packet(ctx.pCodecContext, ctx.pkt);
+            if(ret == 0)
+            {
+                Write_out_yuv_frame(ctx, inputoutput);
+                printf("Succeed to decode 1 frame! Frame pts: %ld\n", ctx.frame->pts);
+            }
         }
     }
 

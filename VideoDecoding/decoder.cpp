@@ -2,9 +2,12 @@
 
 bool Open_decoder(CodecCtx &ctx)
 {
-    avcodec_register_all();
-
-    av_init_packet(&(ctx.pkt));
+    ctx.pkt = av_packet_alloc();
+	if(!ctx.pkt)
+	{
+		fprintf(stderr, "Could not allocate video codec packet\n");
+		return false;
+	}
 
     ctx.pCodec = avcodec_find_decoder(AV_CODEC_ID_H264);
     if (!ctx.pCodec) 
@@ -50,7 +53,8 @@ bool Open_decoder(CodecCtx &ctx)
 
 void Close_decoder(CodecCtx &ctx)
 {
-	avcodec_close(ctx.pCodecContext);
-	av_free(ctx.pCodecContext);
+	avcodec_free_context(&(ctx.pCodecContext));
+	av_parser_close(ctx.pCodecParserCtx);
+	av_packet_free(&(ctx.pkt));
 	av_frame_free(&(ctx.frame));
 }

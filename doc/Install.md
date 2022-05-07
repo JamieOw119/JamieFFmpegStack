@@ -268,9 +268,6 @@ clean:
 	rm -f *.o $(Target)
 ```
 
-
-
-
 ## 1.3: Install FFmpeg in Linux (Using Packaging Tool)
 
 ### 1 and 2
@@ -328,4 +325,28 @@ hash -r
 
 ## 1.4: Using installed FFmpeg (Using Packaging Tool)
 
-MakeFile Example refer to Section 1.4
+MakeFile Example
+
+```
+CC = g++
+Cflag = -g
+SRC = $(wildcard *.cpp)
+OBJS = $(patsubst %cpp, %o, $(SRC))
+HEADER = $(wildcard ../include/*.h)
+Lib = -lavformat -lavdevice -lavcodec -lavutil -lswscale -lswresample                                                              
+Lib2 = -laom -lx264 -lx265 -lvpx -lfdk-aac -lopus -lmp3lame -ldav1d
+Lib3 = -lz -lm -lbz2 -llzma -ldl -lrt -lgnutls -lpthread
+Target = <your target name>
+
+all: $(Target)
+
+%.o:%.cpp $(HEADER)
+	$(CC) $(Cflag) -c $< -o $@
+
+$(Target):$(OBJS)
+	$(CC) $(Cflag) -o $@ $^ $(Lib) $(Lib2) $(Lib3)
+
+.PHONY:clean
+clean:
+	rm -f *.o $(Target)
+```
