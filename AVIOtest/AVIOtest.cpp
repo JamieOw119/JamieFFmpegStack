@@ -7,10 +7,10 @@
 
 extern "C"
 {
-#include "libavutil/avutil.h"
-#include "libavutil/macros.h"
-#include "libavformat/avformat.h"
-#include "libavformat/avio.h"
+#include <libavutil/avutil.h>
+#include <libavutil/macros.h>
+#include <libavformat/avformat.h>
+#include <libavformat/avio.h>
 }
 
 typedef uint8_t BYTE;
@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
     }
 
     printf("Output in main 1:\n");
-	for (int i = 0; i < 16; i++) {
+	for (int i = 0; i < 8; i++) {
 		printf("0x%x\t", avio_r8(avio_ctx));
 		if ((i+1) % 8 == 0)	{
 			printf("\n");
