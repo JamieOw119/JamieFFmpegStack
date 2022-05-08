@@ -3,35 +3,23 @@
 #define _INPUT_OUTPUT_H_
 
 #include <stdio.h>
-#include <stdint.h>
-#include "video_codec_context.h"
+#include <stdlib.h>
+#include <string.h>
+
+#define INBUF_SIZE 4096
 
 typedef struct 
 {
-    FILE        *pFin;
-    FILE        *pFout;
-
-    char        *pNameIn;
-    char        *pNameOut;
-
-    uint16_t    nImageWidth;
-    uint16_t    nImageHeight;
-    
-    uint16_t    nFrameRate;
-    uint64_t    nBitRate;
-    uint16_t    nGOPSize;
-    uint16_t    nMaxBFrames;
-    uint16_t    nTotalFrames;
+    FILE *p_in;
+    FILE *p_out;
+    char *in_filename;
+    char *out_filename;
 } IOParam;
 
-bool Parse_input_param(int argc, char *argv[], IOParam &io_param);
+void Parse(int argc, char **argv, IOParam &io_param);
 
-bool Open_file(IOParam &io_param);
+bool OpenFiles(IOParam &io_param);
 
-void Close_file(IOParam &io_param);
-
-int Read_yuv_data(CodecCtx &ctx, IOParam &io_param, int color_plane);
-
-void Write_out_yuv_frame(const CodecCtx &ctx, IOParam &in_out);
+void CloseFiles(IOParam &io_param);
 
 #endif

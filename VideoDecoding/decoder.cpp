@@ -1,60 +1,91 @@
 #include "decoder.h"
+#include "input_output.h"
 
-bool Open_decoder(CodecCtx &ctx)
+void Decode(CodecCtx &codec_ctx, IOParam &io_param)
 {
-    ctx.pkt = av_packet_alloc();
-	if(!ctx.pkt)
-	{
-		fprintf(stderr, "Could not allocate video codec packet\n");
-		return false;
-	}
+    uint8_t inbuf[INBUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE];
+    uint8_t *data;
+    size_t data_size;
+    int eof;
+    int ret;
 
-    ctx.pCodec = avcodec_find_decoder(AV_CODEC_ID_H264);
-    if (!ctx.pCodec) 
-	{
-		fprintf(stderr, "Codec not found\n");
-		return false;
-	}
-    
-    ctx.pCodecContext = avcodec_alloc_context3(ctx.pCodec);
-    if (!ctx.pCodecContext)
-	{
-		fprintf(stderr, "Could not allocate video codec context\n");
-		return false;
-	}
-
-    if(ctx.pCodec->capabilities & AV_CODEC_CAP_TRUNCATED)
+    do
     {
-        ctx.pCodecContext->flags |= AV_CODEC_FLAG_TRUNCATED;
-    }
+        data_size = fread(inbuf, 1, INBUF_SIZE, io_param.p_in);
+        if(ferror(io_param.p_in))
+            break;
+        eof = !data_size;
 
-    ctx.pCodecParserCtx = av_parser_init(AV_CODEC_ID_H264);
-	if (!ctx.pCodecParserCtx)
-	{
-		printf("Could not allocate video parser context\n");
-		return false;
-	}
-
-    if (avcodec_open2(ctx.pCodecContext, ctx.pCodec, NULL) < 0)
-	{
-		fprintf(stderr, "Could not open codec\n");
-		return false;
-	}
-
-    ctx.frame = av_frame_alloc();
-	if (!ctx.frame) 
-	{
-		fprintf(stderr, "Could not allocate video frame\n");
-		return false;
-	}
-
-	return true;
+        data = inbuf;
+        while(data_size > 0 || eof)
+        {
+            ret = av_parser_parse2(codec_ctx.parser, codec_ctx.ctx, 
+                                    &(codec_ctx.pkt->data), &(codec_ctx.pkt->size),
+                                    data, data_size, 
+                                    AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0);
+            if (ret < 0) 
+            {
+                fprintf(stderr, "Error while parsing\n");
+                exit(1);
+            }
+            data      += ret;
+            data_size -= ret;
+ 
+            if (codec_ctx.pkt->size)
+            {
+                DecodeCore(codec_ctx, io_param);
+            }
+            else if (eof)
+                break;
+        }
+    } while (!eof);
+    return;
 }
 
-void Close_decoder(CodecCtx &ctx)
+void DecodeCore(CodecCtx &codec_ctx, IOParam &io_param)
 {
-	avcodec_free_context(&(ctx.pCodecContext));
-	av_parser_close(ctx.pCodecParserCtx);
-	av_packet_free(&(ctx.pkt));
-	av_frame_free(&(ctx.frame));
+    int ret;
+
+    ret = avcodec_send_packet(codec_ctx.ctx, codec_ctx.pkt);
+    if (ret < 0) {
+        fprintf(stderr, "Error sending a packet for decoding\n");
+        exit(1);
+    }
+
+    while(ret >= 0)
+    {
+        ret = avcodec_receive_frame(codec_ctx.ctx, codec_ctx.frame);
+        if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
+            return;
+        else if (ret < 0) 
+        {
+            fprintf(stderr, "Error during decoding\n");
+            exit(1);
+        }
+
+        printf("saving frame %3d\n", codec_ctx.ctx->frame_number);
+        fflush(stdout);
+
+        WriteOutYUVFile(codec_ctx, io_param);
+    }
+    return;
+}
+
+void WriteOutYUVFile(CodecCtx &codec_ctx, IOParam &io_param)
+{
+	uint8_t **pBuf	= codec_ctx.frame->data;
+	int*	pStride = codec_ctx.frame->linesize;
+	
+	for (int color_idx = 0; color_idx < 3; color_idx++)
+	{
+		int		nWidth	= color_idx == 0 ? codec_ctx.frame->width : codec_ctx.frame->width / 2;
+		int		nHeight = color_idx == 0 ? codec_ctx.frame->height : codec_ctx.frame->height / 2;
+		for(int idx=0;idx < nHeight; idx++)
+		{
+			fwrite(pBuf[color_idx],1, nWidth, io_param.p_out);
+			pBuf[color_idx] += pStride[color_idx];
+		}
+		fflush(io_param.p_out);
+	}
+    return;
 }
