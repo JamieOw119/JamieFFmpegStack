@@ -7,10 +7,10 @@
 
 extern "C"
 {
-#include "libavutil/avutil.h"
-#include "libavutil/macros.h"
-#include "libavformat/avformat.h"
-#include "libavformat/avio.h"
+#include <libavutil/avutil.h>
+#include <libavutil/macros.h>
+#include <libavformat/avformat.h>
+#include <libavformat/avio.h>
 }
 
 typedef uint8_t BYTE;

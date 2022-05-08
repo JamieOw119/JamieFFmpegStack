@@ -8,8 +8,14 @@
 
 ## Third: Video Encoding and Decoding
 
+[Video Decoding](doc/VideoDecoding.md)
+
 ## Forth: Video Remuxing and Demuxing
 
 ## Fifth: Combine Video Encoding and Muxing
 
 ## Sixth: Video Filter and Scaling
+
+## Appendix: How to install FFmpeg and third-party dependencies in Linux environment.
+
+[Install menu](doc/Install.md)

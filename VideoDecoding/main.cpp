@@ -5,16 +5,16 @@
 int main(int argc, char **argv)
 {
     IOParam io_param;
-    Parse(argc, argv, io_param);
+    ParseForDecode(argc, argv, io_param);
     OpenFiles(io_param);
 
     CodecCtx codec_ctx;
-    InitCodecCtx(codec_ctx, AV_CODEC_ID_H264);
+    InitDecodeCodecCtx(codec_ctx, AV_CODEC_ID_H264);
 
     printf("Decode video file %s to %s\n", argv[1], argv[2]);
     Decode(codec_ctx, io_param);
 
     CloseFiles(io_param);
-    CloseCodecCtx(codec_ctx);
+    CloseCodecCtx(codec_ctx, true);
     return 0;
 }
