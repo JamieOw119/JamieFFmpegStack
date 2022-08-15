@@ -1,95 +1,93 @@
-#include "encoder.h"
+#include "Encoder.h"
+#include "VideoEncodingHeader.h"
 
-void Encode(CodecCtx &codec_ctx, IOParam &io_param)
+/*************************************************
+	Function:		setContext
+	Description:	根据输入参数设置编码器上下文
+	Calls:			av_opt_set
+	Called By:		Open_encoder
+	Input:			(in)io_param : 命令行输入参数
+	Output:			(out)ctx : 编码器上下文部件					
+	Return:			无
+*************************************************/
+void setContext(CodecCtx &ctx, IOParam io_param)
 {
-    int ret, x, y;
-    int duration = (int)(io_param.n_total_frames / codec_ctx.ctx->framerate.den);
-    for(int i = 0; i < duration; i++)
-    {
-        fflush(stdout);
-        ret = av_frame_make_writable(codec_ctx.frame);
-        if(ret < 0)
-            exit(1);
-        // Y
-        for(y=0;  y < codec_ctx.ctx->height; y++)
-        {
-            for(x=0;  x < codec_ctx.ctx->width; x++)
-            {
-                codec_ctx.frame->data[0][y * codec_ctx.frame->linesize[0] + x] = 128 + y + i * 3;
-            }
-        }
-        // Cb and Cr
-        for(y=0;  y < codec_ctx.ctx->height>>1; y++)
-        {
-            for(x=0;  x < codec_ctx.ctx->width>>1; x++)
-            {
-                codec_ctx.frame->data[1][y * codec_ctx.frame->linesize[1] + x] = 128 + y + i * 2;
-                codec_ctx.frame->data[2][y * codec_ctx.frame->linesize[2] + x] = 64 + x + i * 5;
-            }
-        }
-        codec_ctx.frame->pts = i;
-        EncodeCore(codec_ctx, io_param);
-    }
+	/* put sample parameters */
+	ctx.c->bit_rate = io_param.nBitRate;
 
-    // flush the encoder
-    EncodeCore(codec_ctx, io_param);
+    /* resolution must be a multiple of two */
+	ctx.c->width = io_param.nImageWidth;
+	ctx.c->height = io_param.nImageHeight;
 
-    uint8_t endcode[] = { 0, 0, 1, 0xb7 };
-    if (codec_ctx.codec->id == AV_CODEC_ID_MPEG1VIDEO || codec_ctx.codec->id == AV_CODEC_ID_MPEG2VIDEO)
-        fwrite(endcode, 1, sizeof(endcode), io_param.p_out);
-    
-    return;
+    /* frames per second */
+	AVRational rational = {1,25};
+	ctx.c->time_base = rational;
+	    
+	ctx.c->gop_size = io_param.nGOPSize;
+	ctx.c->max_b_frames = io_param.nMaxBFrames;
+	ctx.c->pix_fmt = AV_PIX_FMT_YUV420P;
+
+	av_opt_set(ctx.c->priv_data, "preset", "slow", 0);
 }
 
-void EncodeCore(CodecCtx &codec_ctx, IOParam &io_param)
+bool Open_encoder(CodecCtx &ctx, IOParam io_param)
 {
-    int ret;
-    if(codec_ctx.frame)
-    {
-        printf("Send frame %8ld\n", codec_ctx.frame->pts);
-    }
+	int ret;
 
-    ret = avcodec_send_frame(codec_ctx.ctx, codec_ctx.frame);
-    if (ret < 0) {
-        fprintf(stderr, "Error sending a frame for encoding\n");
-        exit(1);
-    }
+	avcodec_register_all();								//注册所有所需的音视频编解码器
 
-    while (ret >= 0) 
-    {
-        ret = avcodec_receive_packet(codec_ctx.ctx, codec_ctx.pkt);
-        if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
-            return;
-        else if (ret < 0) {
-            fprintf(stderr, "Error during encoding\n");
-            exit(1);
-        }
- 
-        printf("Write packet %8ld (size=%d)\n", codec_ctx.pkt->pts, codec_ctx.pkt->size);
-        fwrite(codec_ctx.pkt->data, 1, codec_ctx.pkt->size, io_param.p_out);
-        av_packet_unref(codec_ctx.pkt);
-    }
+	/* find the mpeg1 video encoder */
+	ctx.codec = avcodec_find_encoder(AV_CODEC_ID_H264);	//根据CODEC_ID查找编解码器对象实例的指针
+	if (!ctx.codec) 
+	{
+		fprintf(stderr, "Codec not found\n");
+		return false;
+	}
 
-    return;
+	ctx.c = avcodec_alloc_context3(ctx.codec);			//分配AVCodecContext实例
+	if (!ctx.c)
+	{
+		fprintf(stderr, "Could not allocate video codec context\n");
+		return false;
+	}
+
+	setContext(ctx,io_param);							//设置编码器的上下文
+
+	/* open it */
+	if (avcodec_open2(ctx.c, ctx.codec, NULL) < 0)		//根据编码器上下文打开编码器
+	{
+		fprintf(stderr, "Could not open codec\n");
+		exit(1);
+	}
+
+	ctx.frame = av_frame_alloc();						//分配AVFrame对象
+	if (!ctx.frame) 
+	{
+        fprintf(stderr, "Could not allocate video frame\n");
+        return false;
+    }
+	ctx.frame->format = ctx.c->pix_fmt;
+	ctx.frame->width = ctx.c->width;
+	ctx.frame->height = ctx.c->height;
+
+    /* the image can be allocated by any means and av_image_alloc() is
+     * just the most convenient way if av_malloc() is to be used */
+	//分配AVFrame所包含的像素存储空间
+	ret = av_image_alloc(ctx.frame->data, ctx.frame->linesize, ctx.c->width, ctx.c->height, ctx.c->pix_fmt, 32);
+	if (ret < 0) 
+	{
+		fprintf(stderr, "Could not allocate raw picture buffer\n");
+		return false;
+	}
+
+	return true;
 }
 
-int ReadInYUVData(CodecCtx &codec_ctx, IOParam &io_param, int color_plane)
+void Close_encoder(CodecCtx &ctx)
 {
-    int frame_height	= color_plane == 0? codec_ctx.frame->height : codec_ctx.frame->height / 2;
-	int frame_width		= color_plane == 0? codec_ctx.frame->width : codec_ctx.frame->width / 2;
-    int frame_size		= frame_width * frame_height;
-	int frame_stride	= codec_ctx.frame->linesize[color_plane];
-
-    if(frame_width == frame_stride)
-    {
-        fread(codec_ctx.frame->data[color_plane], 1, frame_size, io_param.p_in);
-    }
-    else
-    {
-        for (int row_idx = 0; row_idx < frame_height; row_idx++)
-		{
-			fread(codec_ctx.frame->data[color_plane] + row_idx * frame_stride, 1, frame_width, io_param.p_in);
-		}
-    }
-    return frame_size;
+	avcodec_close(ctx.c);
+	av_free(ctx.c);
+	av_freep(&(ctx.frame->data[0]));
+	av_frame_free(&(ctx.frame));
 }
+

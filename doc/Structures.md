@@ -1,3 +1,0 @@
-# Important Structures in FFmpeg
-
-## 
